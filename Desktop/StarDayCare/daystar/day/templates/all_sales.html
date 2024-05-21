@@ -1,0 +1,86 @@
+{% extends 'base.html'%} {% block content%}
+<br>
+
+<style>
+  h4{ color:#0C356A;
+    text-shadow: 2px 2px 4px #000000;
+margin-left: 466px;
+font-family: sans-serif;}
+body{ background-color: darkgray;}
+
+button {
+  background-color: #0c356a;
+}
+.btn-primary {
+  background-color: #094f9f;
+}
+.btn {
+    background-color: #0c356a;
+    color: white;
+    transition: background-color 0.7s;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #094f9f; /* Change to a darker shade for hover */
+}
+</style>
+
+  
+    <h4 >TOTAL SALES MADE</h4><hr>
+
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Total Amount Received</th>
+        <th scope="col">Total change Given</th>
+        <th scope="col">Net Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>UGX{{total}}</td>
+        <td>UGX{{change}}</td>
+        <td>UGX{{net}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br><br>
+
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">child's name</th>
+        <th scope="col">Doll Bought</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price(UGX)</th>
+        <th scope="col">Total Cost</th>
+        <th scope="col">Amount Paid</th>
+        <th scope="col">child's Debtors</th>
+      </tr>
+    </thead>
+    {% for sale in sales %}
+    <tbody>
+      <tr>
+
+        
+        <td style="color:#FB667A;">{{sale.payee | title}}</td>
+        <td>{{sale.doll | title}}</td>
+        <td>{{sale.quantity_sold}}</td>
+        <td>UGX{{sale.unit_price}}</td>
+        <td>UGX{{sale.get_total}}</td>
+        <td>UGX{{sale.amount_received}}</td>
+        <td>UGX{{sale.get_change}}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+<a href="{% url 'doll'  %}"  class="hover-button"><input type= "submit" value="Go back" class="btn btn-primary" type="button"/></a>
+{% endblock%}
+

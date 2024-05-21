@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ <style>
+    h4{ color:#0C356A;
+        text-shadow: 2px 2px 4px #000000;
+     margin-left: 490px;
+    }
+    body{background-color: darkgray}
+
+
+    button {
+        background-color: #0c356a;
+      }
+      .btn-primary {
+        background-color: #094f9f;
+      }
+      .btn {
+          background-color: #0c356a;
+          color: white;
+          transition: background-color 0.7s;
+          text-decoration: none;
+          padding: 8px 16px;
+          border-radius: 4px;
+      }
+  
+      .btn:hover {
+          background-color: #094f9f; /* Change to a darker shade for hover */
+      }    
+ </style>
+
+<br>
+    <a  href="{% url 'receipt' %}" class="hover_button" ><input type="submit" value="Receipts" class="btn btn-primary " placeholder="Receipts"/></a>
+    <a href="{% url 'all_sales' %}"  class="hover-button"><input type= "submit" value="All_sales" class="btn btn-primary" type="button"/></a>
+
+
+<div class="table-container">
+    
+        <h4 >DOLLS IN  STOCK</h4><hr>
+        <form action="" method="GET"style="margin-right:450px;">
+            {{doll_filters.form}}
+            <input type="submit" value="Search dollname" class="btn btn-primary" style="width:170px"/>
+            </form>        
+<br>
+        <a href="/dolladd" class="btn btn-primary mb-3">Add doll</a>
+
+    
+</div>
+<table class="table table-bordered">
+    
+    <thead class="thead-dark table-bordered">
+        <tr>
+            <th scope="col" class="project-h1">Category</th>
+            <th scope="col" class="project-h1">Dolls name</th>
+            <th scope="col" class="project-h1">Size</th>
+            <th scope="col" class="project-h1">Color</th>
+            <th scope="col" class="project-h1">Quantity</th>
+            <th scope="col" class="project-h1">Unit Price(UGX)</th>
+            <th scope="col" class="project-h1">Date</th>
+            <th scope="col" class="project-h1">Detail</th>
+        </tr>
+    </thead>
+    {% for dolls in dolls %}
+    <tbody>
+        <tr style="font-family: sans-serif;">
+            <td>{{dolls.c_doll}}</td>
+            <td>{{dolls.name_of_the_doll}}</td>
+            <td>{{dolls.size}}</td>
+            <td>{{dolls.color}}</td>
+            <td>{{dolls.quantity}}</td>
+            <td>UGX{{dolls.Unit_price}}</td>
+            <td>{{dolls.date}}</td>
+           
+            <div> <!-- here we are hadling the buy item link n its handled by product_detail view -->
+            
+            <td >
+                <a href="{% url 'dollscorner' doll_id=dolls.id %}" class="btn btn-primary">View doll</a>
+            </td>
+
+
+
+        </div>
+
+
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

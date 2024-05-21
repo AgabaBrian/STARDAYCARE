@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br />
+<style>
+.card-header{font-family: sans-serif;}
+body{background-color: darkgray;}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">Daystar Daycare, Kabalagala</h4>
+                    <p class="text-center">Kampala, Uganda</p>
+                    <p class="text-center">Contact us: +256789728298</p>
+                    <p class="text-center">Date: {{ receipt.sale_date }}</p>
+                    <p class="text-center">Receipt Number: DOLL-RECEIPT-0{{ receipt.id }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Doll Name</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-right">Total Bill (Ugx)</th>
+                                    <th class="text-right">Amount Paid (Ugx)</th>
+                                    <th class="text-right">Amount Due (Ugx)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="font-family: sans-serif;">
+                                    <td>{{ receipt.doll | title }}</td>
+                                    <td class="text-center">{{ receipt.quantity_sold }}</td>
+                                    <td class="text-right">Ugx{{ receipt.get_total }}</td>
+                                    <td class="text-right">Ugx{{ receipt.amount_received }}</td>
+                                    <td class="text-right">Ugx{{ receipt.get_change }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center" style="font-family: sans-serif;">Thank you for choosing Daystar daycare</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{% url 'doll'  %}"  class="hover-button"><input type= "submit" value="Go back" class="btn btn-primary" type="button"/></a>
+</div>
+{% endblock %}
